@@ -22,7 +22,7 @@ jobs:
 
     - name: Creating Production Release AAB
       run: ./gradlew :app:bundleRelease
-    - name: Signing Production Release AABa
+    - name: Signing Production Release AAB
       id: signProductionReleaseAAB
       uses: r0adkll/sign-android-release@v1.0.4
       with:
