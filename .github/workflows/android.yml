@@ -20,6 +20,17 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    - name: Creating Production Release Build
+      run: ./gradlew :app:assembleRelease
+    - name: Signing Production Release Build
+      id: signProductionReleaseAPK
+      uses: r0adkll/sign-android-release@v1.0.4
+      with:
+        releaseDirectory: app/build/outputs/apk/release
+        alias: ${{ secrets.KEYSTORE_ALIAS }}
+        signingKeyBase64: ${{ secrets.KEYSTORE }}
+        keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+        keyPassword: ${{ secrets.KEYSTORE_PRIVATE_KEY_PASSWORD }}
     - name: Creating Production Release AAB
       run: ./gradlew :app:bundleRelease
     - name: Signing Production Release AAB
@@ -31,6 +42,11 @@ jobs:
         signingKeyBase64: ${{ secrets.KEYSTORE }}
         keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
         keyPassword: ${{ secrets.KEYSTORE_PRIVATE_KEY_PASSWORD }}
+    - name: Upload Production Release Build
+      uses: actions/upload-artifact@v2
+      with:
+        name: Production Release Build
+        path: ${{steps.signProductionReleaseAPK.outputs.signedReleaseFile}}
     - name: Upload Production Release AAB
       uses: actions/upload-artifact@v2
       with:
