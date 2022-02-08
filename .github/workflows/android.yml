@@ -24,3 +24,14 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Creating Production Release AAB
+      run: ./gradlew :app:bundleRelease
+    - name: Signing Production Release AAB
+      id: signProductionReleaseAAB
+      uses: r0adkll/sign-android-release@v1.0.4
+      with:
+        releaseDirectory: app/build/outputs/bundle/release
+        alias: ${{ secrets.KEYSTORE_ALIAS }}
+        signingKeyBase64: ${{ secrets.KEYSTORE }}
+        keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+        keyPassword: ${{ secrets.KEYSTORE_PRIVATE_KEY_PASSWORD }}
