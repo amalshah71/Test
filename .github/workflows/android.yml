@@ -35,3 +35,8 @@ jobs:
         signingKeyBase64: ${{ secrets.KEYSTORE }}
         keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
         keyPassword: ${{ secrets.KEYSTORE_PRIVATE_KEY_PASSWORD }}
+    - name: Upload Production Release AAB
+      uses: actions/upload-artifact@v2
+      with:
+        name: AAB
+        path: ${{steps.signProductionReleaseAAB.outputs.signedReleaseFile}}
