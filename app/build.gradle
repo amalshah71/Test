@@ -15,20 +15,10 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    
-    signingConfigs {
-        release {
-            storeFile file("keystores/newtest.jks")
-            storePassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PASSWORD")
-            keyAlias System.getenv("BITRISEIO_ANDROID_KEYSTORE_ALIAS")
-            keyPassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
-        }
-    }
 
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig System.getenv("BITRISEIO_ANDROID_KEYSTORE_PASSWORD") == null ? signingConfigs.debug : signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
