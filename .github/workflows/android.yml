@@ -22,7 +22,6 @@ jobs:
         distribution: 'temurin'
         cache: gradle
     - name: Test
-      run: |
-        echo "actualtag=${{github.ref_name}}" >> $GITHUB_ENV
+      run: echo "actualtag=${{github.ref_name}}" >> $GITHUB_ENV
     - name: Test1
       run: echo ${{env.actualtag}}
