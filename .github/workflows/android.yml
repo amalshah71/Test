@@ -38,3 +38,20 @@ jobs:
       run: |
         echo ${{env.isRCBuild}}
         echo ${{env.actualTagValue}}
+    - name: Get App Version
+      run: |
+        if [[ ${{env.actualTagValue}} =~ ^zee($DIGIT+)/vc($DIGIT{9})/vn($DIGIT{2})\.($DIGIT{1})$ ]]
+        then
+            echo "${BASH_REMATCH[0]}" # full (matched) string, e.g. zee34/vc203230230/vn11.9
+            echo "${BASH_REMATCH[1]}" # Major/Fix Version
+            echo "${BASH_REMATCH[2]}" # versionCode
+            echo "${BASH_REMATCH[3]}" # Group Number
+            echo "${BASH_REMATCH[4]}" # Respin Count
+
+            echo "VERSION_CODE=${BASH_REMATCH[2]}" >> $GITHUB_ENV
+            echo "VERSION_NAME=${BASH_REMATCH[1]}.1${VERSION_CODE:6}${BASH_REMATCH[3]}${BASH_REMATCH[4]}" >> $GITHUB_ENV
+        fi
+    - name: Print App Version
+      run: |
+        echo ${{env.VERSION_CODE}}
+        echo ${{env.VERSION_NAME}}
