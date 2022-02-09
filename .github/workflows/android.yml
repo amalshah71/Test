@@ -24,8 +24,6 @@ jobs:
     - name: Test
       env:
         FULL_TAG: ${{github.ref_name}}
-      run: |
-        run: 
     - name: Test1
       run: |
         run: ${{ env.FULL_TAG }}
