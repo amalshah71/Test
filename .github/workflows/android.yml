@@ -23,7 +23,7 @@ jobs:
         cache: gradle
     - name: Test
       run: |
-        echo "actualtag=yellow" >> $GITHUB_ENV
+        echo "actualtag=${{github.ref_name}}" >> $GITHUB_ENV
     - name: Test1
       run: echo ${{env.actualtag}}
     - name: Creating Production Release Build
