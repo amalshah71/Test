@@ -22,7 +22,10 @@ jobs:
         distribution: 'temurin'
         cache: gradle
     - name: Test
-      run: echo "FULL_TAG=$(echo $github.ref_name | cut -c 1-6)" >> $GITHUB_ENV
+      run: |
+        echo "actualtag=yellow" >> $GITHUB_ENV
+    - name: Test1
+      run: echo ${{env.actualtag}}
     - name: Creating Production Release Build
       run: ./gradlew :app:assembleRelease
     - name: Signing Production Release Build
