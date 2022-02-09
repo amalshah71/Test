@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     tags:
       - zee*/vc*/vn*
+      - dcbuildzee*/vc*/vn*
   pull_request:
     branches: [ master ]
 
