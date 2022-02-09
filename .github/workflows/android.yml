@@ -23,7 +23,7 @@ jobs:
         cache: gradle
     - name: Test
       run: |
-        run: echo "TAGG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+        run: echo "TAGG=${github.ref_name/refs\/tags\//}" >> $GITHUB_ENV
     - name: Test1
       run: |
         run: ${{ env.TAGG }}
