@@ -22,11 +22,13 @@ jobs:
         distribution: 'temurin'
         cache: gradle
     - name: Test
+      env:
+        FULL_TAG: ${{github.ref_name}}
       run: |
-        run: echo "TAGG=${github.ref_name/refs\/tags\//}" >> $GITHUB_ENV
+        run: 
     - name: Test1
       run: |
-        run: ${{ env.TAGG }}
+        run: ${{ env.FULL_TAG }}
     - name: Creating Production Release Build
       run: ./gradlew :app:assembleRelease
     - name: Signing Production Release Build
