@@ -28,13 +28,13 @@ jobs:
       run: echo ${{env.fullTagValue}}
     - name: Is RC Build
       run: |
-        echo "actualTagValue=${{env.fullTagValue}}/ | sed 's/dcbuild//g'" >> $GITHUB_ENV
+        echo "actualTagValue=${{env.fullTagValue}} | sed 's/dcbuild///g'" >> $GITHUB_ENV
         if [[ ${{env.fullTagValue}} =~ "dcbuild" ]]; then
           echo "isRCBuild=0" >> $GITHUB_ENV
         else 
           echo "isRCBuild=1" >> $GITHUB_ENV
         fi
-    - name: Print DC Build
+    - name: Print RC Build
       run: |
         echo ${{env.isRCBuild}}
         echo ${{env.actualTagValue}}
