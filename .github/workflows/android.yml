@@ -23,7 +23,10 @@ jobs:
         cache: gradle
     - name: Test
       run: |
-        echo ${{github.ref_name}}
+        run: echo "TAGG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+    - name: Test1
+      run: |
+        run: ${{ env.TAGG }}
     - name: Creating Production Release Build
       run: ./gradlew :app:assembleRelease
     - name: Signing Production Release Build
