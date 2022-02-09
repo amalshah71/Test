@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     tags:
-      - abc/dcbuild/*
+      - zee*/vc*/vn*
   pull_request:
     branches: [ master ]
 
