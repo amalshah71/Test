@@ -23,15 +23,18 @@ jobs:
         distribution: 'temurin'
         cache: gradle
     - name: Get Tag
-      run: echo "actualTagValue=${{github.ref_name}}" >> $GITHUB_ENV
+      run: echo "fullTagValue=${{github.ref_name}}" >> $GITHUB_ENV
     - name: Print Tag
-      run: echo ${{env.actualTagValue}}
+      run: echo ${{env.fullTagValue}}
     - name: Is RC Build
       run: |
-        if [[ ${{env.actualTagValue}} =~ "dcbuild" ]]; then
+        echo "actualTagValue=${{env.fullTagValue}} | sed 's/dcbuild//g'" >> $GITHUB_ENV
+        if [[ ${{env.fullTagValue}} =~ "dcbuild" ]]; then
           echo "isRCBuild=0" >> $GITHUB_ENV
         else 
           echo "isRCBuild=1" >> $GITHUB_ENV
         fi
     - name: Print DC Build
-      run: echo ${{env.isRCBuild}}
+      run: |
+        echo ${{env.isRCBuild}}
+        echo ${{env.actualTagValue}}
