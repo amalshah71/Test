@@ -26,12 +26,12 @@ jobs:
       run: echo "tagValue=${{github.ref_name}}" >> $GITHUB_ENV
     - name: Print Tag
       run: echo ${{env.tagValue}}
-    - name: Is DC Build
+    - name: Is RC Build
       run: |
         if [[ ${{env.tagValue}} =~ "dcbuild" ]]; then
-          echo "isDCBuild=1" >> $GITHUB_ENV
+          echo "isRCBuild=0" >> $GITHUB_ENV
         else 
-          echo "isDCBuild=0" >> $GITHUB_ENV
+          echo "isRCBuild=1" >> $GITHUB_ENV
         fi
     - name: Print DC Build
-      run: echo ${{env.isDCBuild}}
+      run: echo ${{env.isRCBuild}}
