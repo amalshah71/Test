@@ -5,7 +5,6 @@ on:
     branches: [ master ]
     tags:
       - zee*/vc*/vn*
-      - dcbuild/zee*/vc*/vn*
   pull_request:
     branches: [ master ]
 
@@ -28,7 +27,7 @@ jobs:
       run: echo ${{env.fullTagValue}}
     - name: Is RC Build
       run: |
-        echo "actualTagValue=${{env.fullTagValue}} | sed 's/dcbuild///g'" >> $GITHUB_ENV
+        echo "actualTagValue=${{env.fullTagValue}} | sed 's/dcbuild//g'" >> $GITHUB_ENV
         if [[ ${{env.fullTagValue}} =~ "dcbuild" ]]; then
           echo "isRCBuild=0" >> $GITHUB_ENV
         else 
