@@ -24,9 +24,8 @@ jobs:
     - name: Test
       env:
         FULL_TAG: ${{github.ref_name}}
-    - name: Test1
       run: |
-        run: ${{ env.FULL_TAG }}
+        run: echo ${{ env.FULL_TAG }}
     - name: Creating Production Release Build
       run: ./gradlew :app:assembleRelease
     - name: Signing Production Release Build
