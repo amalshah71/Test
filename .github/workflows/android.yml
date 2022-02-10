@@ -51,7 +51,7 @@ jobs:
           echo "${BASH_REMATCH[4]}" # Respin Count
           
           echo "VERSION_CODE=${BASH_REMATCH[2]}" >> $GITHUB_ENV
-          ASD=${BASH_REMATCH[1]}.1${BASH_REMATCH[2]:6}${BASH_REMATCH[3]}${BASH_REMATCH[4]}
+          ASD=${BASH_REMATCH[1]}.1${BASH_REMATCH[2]:6}${BASH_REMATCH[3]}${BASH_REMATCH[4]}.0
           echo "VERSION_NAME=${ASD}" >> $GITHUB_ENV
         else
           echo "else"
