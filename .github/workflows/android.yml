@@ -42,7 +42,7 @@ jobs:
         set -e
 
         DIGIT=[0-9]
-        if [[ ${{ env.actualTagValue }} =~ dcbuildzee34/vc203230354/vn08.0 ]]; then
+        if [[ "${{ env.actualTagValue }}" =~ dcbuildzee34/vc203230355/vn08.0 ]]; then
           echo "if"
         else
           echo "else"
