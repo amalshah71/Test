@@ -38,6 +38,8 @@ jobs:
       run: |
         echo ${{env.isRCBuild}}
         echo ${{env.actualTagValue}}
+        echo ${{env.actualTagValue}}
+        echo ${{env.actualTagValue}}
         
         if [[ ${{env.actualTagValue}} =~ ^zee($DIGIT+)/vc($DIGIT{9})/vn($DIGIT{2})\.($DIGIT{1})$ ]]; then
             echo "${BASH_REMATCH[0]}" # full (matched) string, e.g. zee34/vc203230230/vn11.9
