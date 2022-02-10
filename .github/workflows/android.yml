@@ -39,7 +39,10 @@ jobs:
         echo ${{env.isRCBuild}}
         echo ${{env.actualTagValue}}
         
-        if [[ env.actualTagValue =~ ^zee($DIGIT+)/vc($DIGIT{9})/vn($DIGIT{2})\.($DIGIT{1})$ ]]; then
+        set -e
+
+        DIGIT=[0-9]
+        if [[ ${{env.actualTagValue}} =~ ^zee($DIGIT+)/vc($DIGIT{9})/vn($DIGIT{2})\.($DIGIT{1})$ ]]; then
             echo "${BASH_REMATCH[0]}" # full (matched) string, e.g. zee34/vc203230230/vn11.9
             echo "${BASH_REMATCH[1]}" # Major/Fix Version
             echo "${BASH_REMATCH[2]}" # versionCode
