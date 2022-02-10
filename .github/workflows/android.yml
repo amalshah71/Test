@@ -42,7 +42,7 @@ jobs:
         set -e
 
         DIGIT=[0-9]
-        if [[ "${{ env.actualTagValue }}" =~ ^zee($DIGIT+)/vc($DIGIT{9})/vn($DIGIT{2})\.($DIGIT{1})$ ]]; then
+        if [[ "${{ env.actualTagValue }}" =~ zee($DIGIT+)/vc($DIGIT{9})/vn($DIGIT{2})\.($DIGIT{1}) ]]; then
           echo "if"
         else
           echo "else"
