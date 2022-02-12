@@ -24,6 +24,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: gradle
+    - name: Detekt
+      run: ./gradlew detekt
     - name: Get Tag
       run: echo "fullTagValue=${{github.ref_name}}" >> $GITHUB_ENV
     - name: Print Tag
